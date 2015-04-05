@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Capital One Votes</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_show_teams">ShowTeams</string>
+</resources>

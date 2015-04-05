@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".EnterTeams">
+    <item
+        android:id="@+id/activity_enter_teams"
+        android:orderInCategory="100"
+        android:name=".EnterTeams"
+        android:title="Enter Teams"
+        />
+    <item
+        android:id="@+id/activity_show_teams"
+        android:orderInCategory="100"
+        android:name=".showTeams"
+        android:title="View Teams"
+        />
+
+</menu>
