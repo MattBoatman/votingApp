@@ -18,20 +18,18 @@ android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".cof.capi
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/category2"
-        android:layout_below="@+id/category1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="29dp" />
+        android:layout_below="@+id/labelcat2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/category3"
         android:focusable="true"
-        android:layout_below="@+id/category2"
+        android:layout_below="@+id/labelcat3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="41dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -39,11 +37,10 @@ android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".cof.capi
         android:text="Submit Votes"
         android:id="@+id/button"
         android:nestedScrollingEnabled="false"
-        android:onClick="submitVoteslick"
-        android:layout_below="@+id/category3"
+        android:onClick="submitVotesClick"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="54dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -52,28 +49,31 @@ android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".cof.capi
         android:id="@+id/labelcat1"
         android:layout_alignParentTop="true"
         android:textStyle="bold"
-        android:textSize="28dp" />
+        android:textSize="28dp"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Category Two"
         android:id="@+id/labelcat2"
+        android:textStyle="bold"
+        android:textSize="28dp"
         android:layout_below="@+id/category1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textStyle="bold"
-        android:textSize="28dp" />
+        android:layout_marginTop="70dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Category Three"
-        android:id="@+id/textView"
+        android:id="@+id/labelcat3"
+        android:textSize="28dp"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
         android:layout_below="@+id/category2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="28dp"
-        android:textStyle="bold" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -1,42 +1,35 @@
 package cof.capitalonevotes;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
-public class EnterTeams extends Activity {
+public class ResultsScreen extends Activity {
+    static HashMap<String, Integer> cat1 = new HashMap<String, Integer>();
 
-    ShowTeams sTeams = new ShowTeams();
-    List<String> schoolList = new ArrayList<String>();
-    Spinner mySchoolSpinner;
+    HashMap<String, Integer> cat1hashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter_teams);
+        setContentView(R.layout.activity_results_screen);
+        Intent intent = getIntent();
+        cat1hashMap = (HashMap<String, Integer>) intent.getSerializableExtra("cat1");
+
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_enter_teams, menu);
-
+        getMenuInflater().inflate(R.menu.menu_results_screen, menu);
         return true;
     }
 
@@ -63,15 +56,7 @@ public class EnterTeams extends Activity {
             startActivity(enterIntent);
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-
-
-    public void enterTeamClick(View v)
-    {
-        EditText myEditText = (EditText) findViewById(R.id.teamName);
-        String teamNameString = myEditText.getText().toString();
-        sTeams.populateTeamMaps(teamNameString);
-    }
-
 }

@@ -13,4 +13,10 @@
         android:name=".showTeams"
         android:title="View Teams"
         />
+    <item
+        android:id="@+id/activity_results_screen"
+        android:orderInCategory="100"
+        android:name=".resultsScreen"
+        android:title="Results Screen"
+        />
 </menu>

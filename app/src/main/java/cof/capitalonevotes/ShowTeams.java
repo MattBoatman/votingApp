@@ -22,18 +22,26 @@ public class ShowTeams extends Activity {
 
     List<String> schoolList = new ArrayList<String>();
     static List<String>  teamList1 = new ArrayList<String>();
-    static List<String>  teamList2 = new ArrayList<String>();
-    static List<String>  teamList3 = new ArrayList<String>();
-   static HashMap<String, Integer> school1Category1 = new HashMap<String, Integer>();
-    static HashMap<String, Integer> school1Category2 = new HashMap<String, Integer>();
-    static HashMap<String, Integer> school1Category3 = new HashMap<String, Integer>();
-   // Spinner cat1Spinner;
+     static HashMap<String, Integer> school1Category1 = new HashMap<String, Integer>();
+     static HashMap<String, Integer> school1Category2 = new HashMap<String, Integer>();
+     static HashMap<String, Integer> school1Category3 = new HashMap<String, Integer>();
+    ArrayAdapter<String> spinnerAdapter;
+
+    Spinner cat1Spinner;
+    Spinner cat2Spinner;
+    Spinner cat3Spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_teams);
 
-     //   cat1Spinner = (Spinner) findViewById(R.id.category1);
+        cat1Spinner = (Spinner) findViewById(R.id.category1);
+        cat2Spinner = (Spinner) findViewById(R.id.category2);
+        cat3Spinner = (Spinner) findViewById(R.id.category3);
+        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+
         populateSpinners();
     }
 
@@ -62,7 +70,12 @@ public class ShowTeams extends Activity {
             startActivity(enterIntent);
             return true;
         }
-
+        if (id == R.id.activity_results_screen) {
+            Intent resultsIntent = new Intent(this, ResultsScreen.class);
+            resultsIntent.putExtra("cat1", school1Category1);
+            startActivity(resultsIntent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
     public static void populateTeamMaps(String teamName)
@@ -71,38 +84,50 @@ public class ShowTeams extends Activity {
         school1Category2.put(teamName, 0);
         school1Category3.put(teamName, 0);
         teamList1.add(teamName);
-        teamList2.add(teamName);
-        teamList3.add(teamName);
+
     }
 
     public void populateSpinners()
     {
         //spinner 1
-        Spinner cat1Spinner = (Spinner) findViewById(R.id.category1);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teamList1);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Spinner cat1Spinner = (Spinner) findViewById(R.id.category1);
+        //ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
+        //spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         cat1Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
         //spinner 2
-        Spinner cat2Spinner = (Spinner) findViewById(R.id.category2);
-        ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teamList1);
-        spinnerAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cat2Spinner.setAdapter(spinnerAdapter2);
-        spinnerAdapter2.notifyDataSetChanged();
+        //ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
+       // spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        cat2Spinner.setAdapter(spinnerAdapter);
+        spinnerAdapter.notifyDataSetChanged();
         //spinner 3
-        Spinner cat3Spinner = (Spinner) findViewById(R.id.category3);
-        ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, teamList1);
-        spinnerAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cat3Spinner.setAdapter(spinnerAdapter3);
-        spinnerAdapter3.notifyDataSetChanged();
+       // ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
+        //spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
+        cat3Spinner.setAdapter(spinnerAdapter);
+        spinnerAdapter.notifyDataSetChanged();
     }
 
 
 
-    public void submitVoteslick(View v)
+    public void submitVotesClick(View v)
     {
+        String cat1pick = cat1Spinner.getSelectedItem().toString();
+        incrementVote(cat1pick, school1Category1);
+        String cat2pick = cat2Spinner.getSelectedItem().toString();
+        incrementVote(cat2pick, school1Category2);
+        String cat3pick = cat3Spinner.getSelectedItem().toString();
+        incrementVote(cat3pick, school1Category3);
+        cat1Spinner.setSelection(0);
 
-      ;
+
+    }
+
+
+
+    private void incrementVote(String selectedTeam, HashMap<String, Integer> schoolCat) {
+        if(schoolCat.containsKey(selectedTeam)){
+            schoolCat.put(selectedTeam, schoolCat.get(selectedTeam) + 1);
+        }
     }
 
 
