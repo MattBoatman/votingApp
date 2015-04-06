@@ -1,5 +1,6 @@
 package cof.capitalonevotes;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -18,11 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class EnterTeams extends ActionBarActivity {
+public class EnterTeams extends Activity {
 
     ShowTeams sTeams = new ShowTeams();
     List<String> schoolList = new ArrayList<String>();
-    HashMap<String, Integer> school1 = new HashMap<String, Integer>();
+    Spinner mySchoolSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,33 +63,11 @@ public class EnterTeams extends ActionBarActivity {
     }
 
 
-public void enterSchoolClick(View v)
-{
-    EditText myEditText = (EditText) findViewById(R.id.schoolName);
-    String schoolNameString = myEditText.getText().toString();
-    schoolList.add(schoolNameString);
-    Spinner mySchoolSpinner = (Spinner) findViewById(R.id.schoolSpinner);
-    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, schoolList);
-    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    mySchoolSpinner.setAdapter(spinnerAdapter);
-   // spinnerAdapter.notifyDataSetChanged();
-
-
-}
-
     public void enterTeamClick(View v)
     {
         EditText myEditText = (EditText) findViewById(R.id.teamName);
         String teamNameString = myEditText.getText().toString();
-
-//        sTeams.createTeamObject(teamNameString);
-//        tClass.setTeamName(teamNameString);
-//        tClass.setCategory1(0);
-//        tClass.setCategory2(0);
-//        tClass.setCategory3(0);
-//        teamClassList.add(tClass);
-
-
+        sTeams.populateTeamMaps(teamNameString);
     }
 
 }
