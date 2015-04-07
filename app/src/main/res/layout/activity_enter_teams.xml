@@ -16,13 +16,12 @@
         android:layout_alignParentStart="false" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:onClick="enterTeamClick"
         android:text="Enter Team"
         android:id="@+id/enterTeam"
         android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="43dp"
         android:layout_below="@+id/teamName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

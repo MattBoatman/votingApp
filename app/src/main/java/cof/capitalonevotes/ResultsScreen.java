@@ -47,31 +47,6 @@ public class ResultsScreen extends Activity {
         displayResults(sortedcat1, cat1textview);
         displayResults(sortedcat2, cat2textview);
         displayResults(sortedcat3, cat3textview);
-
-        Set set = sortedcat1.entrySet();
-        Iterator i = set.iterator();
-        System.out.print("cat1");
-        while(i.hasNext()) {
-            Map.Entry me = (Map.Entry)i.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
-        }
-        Set set2 = sortedcat2.entrySet();
-        System.out.print("cat2");
-        Iterator i2 = set2.iterator();
-        while(i2.hasNext()) {
-            Map.Entry me = (Map.Entry)i2.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
-        }
-        Set set3 = sortedcat3.entrySet();
-        Iterator i3 = set3.iterator();
-        System.out.print("cat3");
-        while(i3.hasNext()) {
-            Map.Entry me = (Map.Entry)i3.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
-        }
     }
 
 
@@ -109,9 +84,7 @@ public class ResultsScreen extends Activity {
     }
 
 
-
-
-    public LinkedHashMap sortMaps(HashMap<String, Integer> passedMap){
+    public LinkedHashMap sortMaps(HashMap<String, Integer> passedMap) {
 
         List mapKeys = new ArrayList(passedMap.keySet());
         List mapValues = new ArrayList(passedMap.values());
@@ -130,32 +103,30 @@ public class ResultsScreen extends Activity {
                 String comp1 = passedMap.get(key).toString();
                 String comp2 = val.toString();
 
-                if (comp1.equals(comp2)){
+                if (comp1.equals(comp2)) {
                     passedMap.remove(key);
                     mapKeys.remove(key);
-                    sortedMap.put((String)key, (Integer)val);
+                    sortedMap.put((String) key, (Integer) val);
                     break;
                 }
-
             }
-
         }
         return sortedMap;
     }
 
-public void displayResults(LinkedHashMap<String, Integer> sortedMap, TextView tview)
-{
-    tview.append("\n");
-    Set set = sortedMap.entrySet();
-    Iterator i = set.iterator();
-    while(i.hasNext()) {
-        Map.Entry me = (Map.Entry)i.next();
-        tview.append(me.getKey().toString() + ": ");
-        tview.append(me.getValue().toString());
+    public void displayResults(LinkedHashMap<String, Integer> sortedMap, TextView tview) {
         tview.append("\n");
+        Set set = sortedMap.entrySet();
+        Iterator i = set.iterator();
+        while (i.hasNext()) {
+            Map.Entry me = (Map.Entry) i.next();
+            String checkZeroString = me.getValue().toString();
+            if(!checkZeroString.equals("0")) {
+                tview.append(me.getKey().toString() + ": ");
+                tview.append(checkZeroString);
+                tview.append("\n");
+            }
+        }
     }
-
-
 }
-    }
 

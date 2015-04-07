@@ -65,16 +65,14 @@ public class EnterTeams extends Activity {
     }
 
 
-    public void enterTeamClick(View v)
-    {
+    public void enterTeamClick(View v) {
         EditText myEditText = (EditText) findViewById(R.id.teamName);
         String teamNameString = myEditText.getText().toString();
-        if(!teamList.contains(teamNameString)) {
+        if (!teamList.contains(teamNameString)) {
             teamList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString);
             myEditText.selectAll();
-        }
-        else {
+        } else {
             new AlertDialog.Builder(this)
                     .setTitle("Duplicate Entry")
                     .setMessage("This team was already added!")
@@ -82,15 +80,13 @@ public class EnterTeams extends Activity {
                     .setPositiveButton("OK", null)
                     .show();
         }
-        }
+    }
 
-    public  void clearTeamsClick(View v)
-    {
+    public void clearTeamsClick(View v) {
         EditText passText = (EditText) findViewById(R.id.clearPass);
         String pass = passText.getText().toString();
         System.out.println(pass);
-        if(pass.equals("coders"))
-        {
+        if (pass.equals("coders")) {
             sTeams.clearTeams();
             new AlertDialog.Builder(this)
                     .setTitle("Clear Teams")
@@ -98,8 +94,7 @@ public class EnterTeams extends Activity {
                     .setCancelable(true)
                     .setPositiveButton("OK", null)
                     .show();
-        }
-        else{
+        } else {
             new AlertDialog.Builder(this)
                     .setTitle("Wrong Password")
                     .setMessage("Password not correct to clear teams.")
@@ -112,5 +107,5 @@ public class EnterTeams extends Activity {
     }
 
 
-    }
+}
 

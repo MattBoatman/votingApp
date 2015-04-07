@@ -6,34 +6,50 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".ResultsScreen">
 
+    <ScrollView android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:id="@+id/scrollview1">
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/cat1View"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+
         android:editable="false"
         android:textIsSelectable="true"
         android:clickable="true"
-        android:text="Category One Results:" />
+        android:text="Most Creative Results:"
+      />
+    </ScrollView>
 
+    <ScrollView android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:id="@+id/scrollview2"
+        android:layout_below="@+id/scrollview1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/cat2View"
-        android:layout_below="@+id/cat1View"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Category Two Results" />
+        android:text="Most User Friendly Results"
+        android:maxLines = "20"
+        android:scrollbars = "vertical" />
+    </ScrollView>
 
+
+    <ScrollView android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:id="@+id/scrollview3"
+        android:layout_below="@+id/scrollview2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:id="@+id/cat3View"
         android:layout_below="@+id/cat2View"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Category Three Results: " />
+        android:text="Best Overall Results: "
+        android:maxLines = "20"
+        android:scrollbars = "vertical"/>
+    </ScrollView>
 </RelativeLayout>

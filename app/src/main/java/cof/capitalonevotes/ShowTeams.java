@@ -1,6 +1,7 @@
 package cof.capitalonevotes;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,10 +22,10 @@ public class ShowTeams extends Activity {
 
 
     List<String> schoolList = new ArrayList<String>();
-    static List<String>  teamList1 = new ArrayList<String>();
-     static HashMap<String, Integer> school1Category1 = new HashMap<String, Integer>();
-     static HashMap<String, Integer> school1Category2 = new HashMap<String, Integer>();
-     static HashMap<String, Integer> school1Category3 = new HashMap<String, Integer>();
+    static List<String> teamList1 = new ArrayList<String>();
+    static HashMap<String, Integer> school1Category1 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> school1Category2 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> school1Category3 = new HashMap<String, Integer>();
     ArrayAdapter<String> spinnerAdapter;
 
     Spinner cat1Spinner;
@@ -80,8 +81,8 @@ public class ShowTeams extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public static void populateTeamMaps(String teamName)
-    {
+
+    public static void populateTeamMaps(String teamName) {
         school1Category1.put(teamName, 0);
         school1Category2.put(teamName, 0);
         school1Category3.put(teamName, 0);
@@ -89,8 +90,7 @@ public class ShowTeams extends Activity {
 
     }
 
-    public void populateSpinners()
-    {
+    public void populateSpinners() {
         //spinner 1
         //Spinner cat1Spinner = (Spinner) findViewById(R.id.category1);
         //ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
@@ -99,20 +99,18 @@ public class ShowTeams extends Activity {
         spinnerAdapter.notifyDataSetChanged();
         //spinner 2
         //ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
-       // spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        // spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         cat2Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
         //spinner 3
-       // ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
+        // ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
         //spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
         cat3Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
     }
 
 
-
-    public void submitVotesClick(View v)
-    {
+    public void submitVotesClick(View v) {
         String cat1pick = cat1Spinner.getSelectedItem().toString();
         incrementVote(cat1pick, school1Category1);
         String cat2pick = cat2Spinner.getSelectedItem().toString();
@@ -122,25 +120,27 @@ public class ShowTeams extends Activity {
         cat1Spinner.setSelection(0);
         cat2Spinner.setSelection(0);
         cat3Spinner.setSelection(0);
+        new AlertDialog.Builder(this)
+                .setTitle("Vote Submitted")
+                .setMessage("Congratulations! You just voted in the Capital One Coders celebration event!")
+                .setCancelable(true)
+                .setPositiveButton("OK", null)
+                .show();
     }
 
 
-
     private void incrementVote(String selectedTeam, HashMap<String, Integer> schoolCat) {
-        if(schoolCat.containsKey(selectedTeam)){
+        if (schoolCat.containsKey(selectedTeam)) {
             schoolCat.put(selectedTeam, schoolCat.get(selectedTeam) + 1);
         }
     }
 
-    public void clearTeams()
-    {
+    public void clearTeams() {
         school1Category1.clear();
         school1Category2.clear();
         school1Category3.clear();
         teamList1.clear();
     }
-
-
 
 
 }
