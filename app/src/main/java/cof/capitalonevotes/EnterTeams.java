@@ -1,6 +1,7 @@
 package cof.capitalonevotes;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.List;
 public class EnterTeams extends Activity {
 
     ShowTeams sTeams = new ShowTeams();
-    List<String> schoolList = new ArrayList<String>();
+    List<String> teamList = new ArrayList<String>();
     Spinner mySchoolSpinner;
 
     @Override
@@ -58,11 +60,7 @@ public class EnterTeams extends Activity {
             startActivity(enterIntent);
             return true;
         }
-        if (id == R.id.activity_results_screen) {
-            Intent enterIntent = new Intent(this, ResultsScreen.class);
-            startActivity(enterIntent);
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -71,7 +69,48 @@ public class EnterTeams extends Activity {
     {
         EditText myEditText = (EditText) findViewById(R.id.teamName);
         String teamNameString = myEditText.getText().toString();
-        sTeams.populateTeamMaps(teamNameString);
+        if(!teamList.contains(teamNameString)) {
+            teamList.add(teamNameString);
+            sTeams.populateTeamMaps(teamNameString);
+            myEditText.selectAll();
+        }
+        else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Duplicate Entry")
+                    .setMessage("This team was already added!")
+                    .setCancelable(true)
+                    .setPositiveButton("OK", null)
+                    .show();
+        }
+        }
+
+    public  void clearTeamsClick(View v)
+    {
+        EditText passText = (EditText) findViewById(R.id.clearPass);
+        String pass = passText.getText().toString();
+        System.out.println(pass);
+        if(pass.equals("coders"))
+        {
+            sTeams.clearTeams();
+            new AlertDialog.Builder(this)
+                    .setTitle("Clear Teams")
+                    .setMessage("The teams are cleared!")
+                    .setCancelable(true)
+                    .setPositiveButton("OK", null)
+                    .show();
+        }
+        else{
+            new AlertDialog.Builder(this)
+                    .setTitle("Wrong Password")
+                    .setMessage("Password not correct to clear teams.")
+                    .setCancelable(true)
+                    .setPositiveButton("OK", null)
+                    .show();
+        }
+
+
     }
 
-}
+
+    }
+

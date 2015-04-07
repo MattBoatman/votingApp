@@ -6,14 +6,29 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 public class ResultsScreen extends Activity {
+
     static HashMap<String, Integer> cat1 = new HashMap<String, Integer>();
 
     HashMap<String, Integer> cat1hashMap;
+    HashMap<String, Integer> cat2hashMap;
+    HashMap<String, Integer> cat3hashMap;
+    LinkedHashMap<String, Integer> sortedcat1;
+    LinkedHashMap<String, Integer> sortedcat2;
+    LinkedHashMap<String, Integer> sortedcat3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +36,42 @@ public class ResultsScreen extends Activity {
         setContentView(R.layout.activity_results_screen);
         Intent intent = getIntent();
         cat1hashMap = (HashMap<String, Integer>) intent.getSerializableExtra("cat1");
+        cat2hashMap = (HashMap<String, Integer>) intent.getSerializableExtra("cat2");
+        cat3hashMap = (HashMap<String, Integer>) intent.getSerializableExtra("cat3");
+        sortedcat1 = sortMaps(cat1hashMap);
+        sortedcat2 = sortMaps(cat2hashMap);
+        sortedcat3 = sortMaps(cat3hashMap);
+        TextView cat1textview = (TextView) findViewById(R.id.cat1View);
+        TextView cat2textview = (TextView) findViewById(R.id.cat2View);
+        TextView cat3textview = (TextView) findViewById(R.id.cat3View);
+        displayResults(sortedcat1, cat1textview);
+        displayResults(sortedcat2, cat2textview);
+        displayResults(sortedcat3, cat3textview);
 
-
+        Set set = sortedcat1.entrySet();
+        Iterator i = set.iterator();
+        System.out.print("cat1");
+        while(i.hasNext()) {
+            Map.Entry me = (Map.Entry)i.next();
+            System.out.print(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
+        Set set2 = sortedcat2.entrySet();
+        System.out.print("cat2");
+        Iterator i2 = set2.iterator();
+        while(i2.hasNext()) {
+            Map.Entry me = (Map.Entry)i2.next();
+            System.out.print(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
+        Set set3 = sortedcat3.entrySet();
+        Iterator i3 = set3.iterator();
+        System.out.print("cat3");
+        while(i3.hasNext()) {
+            Map.Entry me = (Map.Entry)i3.next();
+            System.out.print(me.getKey() + ": ");
+            System.out.println(me.getValue());
+        }
     }
 
 
@@ -56,7 +105,57 @@ public class ResultsScreen extends Activity {
             startActivity(enterIntent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+    public LinkedHashMap sortMaps(HashMap<String, Integer> passedMap){
+
+        List mapKeys = new ArrayList(passedMap.keySet());
+        List mapValues = new ArrayList(passedMap.values());
+        Collections.sort(mapValues, Collections.reverseOrder());
+        Collections.sort(mapKeys, Collections.reverseOrder());
+
+        LinkedHashMap sortedMap = new LinkedHashMap();
+
+        Iterator valueIt = mapValues.iterator();
+        while (valueIt.hasNext()) {
+            Object val = valueIt.next();
+            Iterator keyIt = mapKeys.iterator();
+
+            while (keyIt.hasNext()) {
+                Object key = keyIt.next();
+                String comp1 = passedMap.get(key).toString();
+                String comp2 = val.toString();
+
+                if (comp1.equals(comp2)){
+                    passedMap.remove(key);
+                    mapKeys.remove(key);
+                    sortedMap.put((String)key, (Integer)val);
+                    break;
+                }
+
+            }
+
+        }
+        return sortedMap;
+    }
+
+public void displayResults(LinkedHashMap<String, Integer> sortedMap, TextView tview)
+{
+    tview.append("\n");
+    Set set = sortedMap.entrySet();
+    Iterator i = set.iterator();
+    while(i.hasNext()) {
+        Map.Entry me = (Map.Entry)i.next();
+        tview.append(me.getKey().toString() + ": ");
+        tview.append(me.getValue().toString());
+        tview.append("\n");
+    }
+
+
 }
+    }
+

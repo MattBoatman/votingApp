@@ -73,6 +73,8 @@ public class ShowTeams extends Activity {
         if (id == R.id.activity_results_screen) {
             Intent resultsIntent = new Intent(this, ResultsScreen.class);
             resultsIntent.putExtra("cat1", school1Category1);
+            resultsIntent.putExtra("cat2", school1Category2);
+            resultsIntent.putExtra("cat3", school1Category3);
             startActivity(resultsIntent);
             return true;
         }
@@ -118,8 +120,8 @@ public class ShowTeams extends Activity {
         String cat3pick = cat3Spinner.getSelectedItem().toString();
         incrementVote(cat3pick, school1Category3);
         cat1Spinner.setSelection(0);
-
-
+        cat2Spinner.setSelection(0);
+        cat3Spinner.setSelection(0);
     }
 
 
@@ -128,6 +130,14 @@ public class ShowTeams extends Activity {
         if(schoolCat.containsKey(selectedTeam)){
             schoolCat.put(selectedTeam, schoolCat.get(selectedTeam) + 1);
         }
+    }
+
+    public void clearTeams()
+    {
+        school1Category1.clear();
+        school1Category2.clear();
+        school1Category3.clear();
+        teamList1.clear();
     }
 
 
