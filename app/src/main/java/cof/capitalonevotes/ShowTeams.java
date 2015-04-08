@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,29 +22,86 @@ import java.util.Map;
 public class ShowTeams extends Activity {
 
 
-    List<String> schoolList = new ArrayList<String>();
-    static List<String> teamList1 = new ArrayList<String>();
-    static HashMap<String, Integer> school1Category1 = new HashMap<String, Integer>();
-    static HashMap<String, Integer> school1Category2 = new HashMap<String, Integer>();
-    static HashMap<String, Integer> school1Category3 = new HashMap<String, Integer>();
+    String[] fakeSchools = new String[] {"team1", "team2", "team3", "team4"};
+
+
+    static List<String> brooklandList = new ArrayList<String>();
+    static List<String> franklinList = new ArrayList<String>();
+    static List<String> goochlandList = new ArrayList<String>();
+    static List<String> manchesterList = new ArrayList<String>();
+    static ArrayList<String> schoolList = new ArrayList<>();
+    static HashMap<String, Integer> brooklandCategory1 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> brooklandCategory2 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> brooklandCategory3 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> goochlandCategory1 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> goochlandCategory2 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> goochlandCategory3 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> manchesterCategory1 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> manchesterCategory2 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> manchesterCategory3 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> franklinCategory1 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> franklinCategory2 = new HashMap<String, Integer>();
+    static HashMap<String, Integer> franklinCategory3 = new HashMap<String, Integer>();
     ArrayAdapter<String> spinnerAdapter;
+    ArrayAdapter<String> SchoolspinnerAdapter;
 
     Spinner cat1Spinner;
     Spinner cat2Spinner;
     Spinner cat3Spinner;
+    Spinner schoolSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_teams);
-
+        Intent intent = getIntent();
+        schoolList = intent.getStringArrayListExtra("schoolList");
         cat1Spinner = (Spinner) findViewById(R.id.category1);
         cat2Spinner = (Spinner) findViewById(R.id.category2);
         cat3Spinner = (Spinner) findViewById(R.id.category3);
-        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
+        schoolSpinner = (Spinner) findViewById(R.id.schoolSpinner);
+        SchoolspinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, schoolList);
+        SchoolspinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        schoolSpinner.setAdapter(SchoolspinnerAdapter);
+        SchoolspinnerAdapter.notifyDataSetChanged();
+        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, brooklandList);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        cat1Spinner.setAdapter(spinnerAdapter);
+      //  spinnerAdapter.notifyDataSetChanged();
+        cat2Spinner.setAdapter(spinnerAdapter);
+      //  spinnerAdapter.notifyDataSetChanged();
+        cat3Spinner.setAdapter(spinnerAdapter);
+        spinnerAdapter.notifyDataSetChanged();
+        //populateSpinners();
+        schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //stuff here to handle item selection
+                String schoolPicked = schoolSpinner.getSelectedItem().toString();
+                String schools;
+                switch (schoolPicked){
+                    case "Franklin":
+                        populateSpinners(franklinList);
+                        break;
+                        case "Brookland":
+                            populateSpinners(brooklandList);
+                            break;
+                            case "Goochland":
+                                populateSpinners(goochlandList);
+                                break;
+                                case "Manchester":
+                                    populateSpinners(manchesterList);
+                                    break;
 
-        populateSpinners();
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -73,61 +131,115 @@ public class ShowTeams extends Activity {
         }
         if (id == R.id.activity_results_screen) {
             Intent resultsIntent = new Intent(this, ResultsScreen.class);
-            resultsIntent.putExtra("cat1", school1Category1);
-            resultsIntent.putExtra("cat2", school1Category2);
-            resultsIntent.putExtra("cat3", school1Category3);
+            resultsIntent.putExtra("brooklandcat1", brooklandCategory1);
+            resultsIntent.putExtra("brooklandcat2", brooklandCategory2);
+            resultsIntent.putExtra("brooklandcat3", brooklandCategory3);
+            resultsIntent.putExtra("franklincat1", franklinCategory1);
+            resultsIntent.putExtra("franklincat2", franklinCategory2);
+            resultsIntent.putExtra("franklincat3", franklinCategory3);
+            resultsIntent.putExtra("manchestercat1", manchesterCategory1);
+            resultsIntent.putExtra("manchestercat2", manchesterCategory2);
+            resultsIntent.putExtra("manchestercat3", manchesterCategory3);
+            resultsIntent.putExtra("goochlandcat1", goochlandCategory1);
+            resultsIntent.putExtra("goochlandcat2", goochlandCategory2);
+            resultsIntent.putExtra("goochlandcat3", goochlandCategory3);
+            resultsIntent.putStringArrayListExtra("schoolList", schoolList);
+
             startActivity(resultsIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public static void populateTeamMaps(String teamName) {
-        school1Category1.put(teamName, 0);
-        school1Category2.put(teamName, 0);
-        school1Category3.put(teamName, 0);
-        teamList1.add(teamName);
+    public static void populateTeamMaps(String teamName, String schoolName) {
+        if(schoolName.equals("Brookland")) {
+            brooklandCategory1.put(teamName, 0);
+            brooklandCategory2.put(teamName, 0);
+            brooklandCategory3.put(teamName, 0);
+            brooklandList.add(teamName);
+        }
+        if(schoolName.equals("Goochland")) {
+            goochlandCategory1.put(teamName, 0);
+            goochlandCategory2.put(teamName, 0);
+            goochlandCategory3.put(teamName, 0);
+            goochlandList.add(teamName);
+        }
+        if(schoolName.equals("Manchester")) {
+            manchesterCategory1.put(teamName, 0);
+            manchesterCategory2.put(teamName, 0);
+            manchesterCategory3.put(teamName, 0);
+            manchesterList.add(teamName);
+        }
+        if(schoolName.equals("Franklin")) {
+            franklinCategory1.put(teamName, 0);
+            franklinCategory2.put(teamName, 0);
+            franklinCategory3.put(teamName, 0);
+            franklinList.add(teamName);
+        }
+
 
     }
 
-    public void populateSpinners() {
+    public void populateSpinners(List<String> teamList) {
         //spinner 1
         //Spinner cat1Spinner = (Spinner) findViewById(R.id.category1);
-        //ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
-        //spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         cat1Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
         //spinner 2
-        //ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
-        // spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
+        spinnerAdapter2.setDropDownViewResource(R.layout.spinner_item);
         cat2Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
         //spinner 3
-        // ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList1);
-        //spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
+         ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
+        spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
         cat3Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
     }
 
 
     public void submitVotesClick(View v) {
+        //todo crash when no teams are entered
         String cat1pick = cat1Spinner.getSelectedItem().toString();
-        incrementVote(cat1pick, school1Category1);
         String cat2pick = cat2Spinner.getSelectedItem().toString();
-        incrementVote(cat2pick, school1Category2);
         String cat3pick = cat3Spinner.getSelectedItem().toString();
-        incrementVote(cat3pick, school1Category3);
-        cat1Spinner.setSelection(0);
-        cat2Spinner.setSelection(0);
-        cat3Spinner.setSelection(0);
-        new AlertDialog.Builder(this)
-                .setTitle("Vote Submitted")
-                .setMessage("Congratulations! You just voted in the Capital One Coders celebration event!")
-                .setCancelable(true)
-                .setPositiveButton("OK", null)
-                .show();
-    }
 
+            String schoolName = schoolSpinner.getSelectedItem().toString();
+
+            switch (schoolName) {
+                case "Franklin":
+                    incrementVote(cat1pick, franklinCategory1);
+                    incrementVote(cat2pick, franklinCategory2);
+                    incrementVote(cat3pick, franklinCategory3);
+                    break;
+                case "Brookland":
+                    incrementVote(cat1pick, brooklandCategory1);
+                    incrementVote(cat2pick, brooklandCategory2);
+                    incrementVote(cat3pick, brooklandCategory3);
+                    break;
+                case "Goochland":
+                    incrementVote(cat1pick, goochlandCategory1);
+                    incrementVote(cat2pick, goochlandCategory2);
+                    incrementVote(cat3pick, goochlandCategory3);
+                    break;
+                case "Manchester":
+                    incrementVote(cat1pick, manchesterCategory1);
+                    incrementVote(cat2pick, manchesterCategory2);
+                    incrementVote(cat3pick, manchesterCategory3);
+                    break;
+            }
+            cat1Spinner.setSelection(0);
+            cat2Spinner.setSelection(0);
+            cat3Spinner.setSelection(0);
+            new AlertDialog.Builder(this)
+                    .setTitle("Vote Submitted")
+                    .setMessage("Congratulations! You just voted in the Capital One Coders celebration event!")
+                    .setCancelable(true)
+                    .setPositiveButton("OK", null)
+                    .show();
+        }
 
     private void incrementVote(String selectedTeam, HashMap<String, Integer> schoolCat) {
         if (schoolCat.containsKey(selectedTeam)) {
@@ -136,10 +248,22 @@ public class ShowTeams extends Activity {
     }
 
     public void clearTeams() {
-        school1Category1.clear();
-        school1Category2.clear();
-        school1Category3.clear();
-        teamList1.clear();
+        franklinCategory1.clear();
+        franklinCategory2.clear();
+        franklinCategory3.clear();
+        brooklandCategory1.clear();
+        brooklandCategory2.clear();
+        brooklandCategory3.clear();
+        goochlandCategory1.clear();
+        goochlandCategory2.clear();
+        goochlandCategory3.clear();
+        manchesterCategory1.clear();
+        manchesterCategory2.clear();
+        manchesterCategory3.clear();
+        brooklandList.clear();
+        franklinList.clear();
+        goochlandList.clear();
+        manchesterList.clear();
     }
 
 

@@ -24,13 +24,30 @@ import java.util.List;
 public class EnterTeams extends Activity {
 
     ShowTeams sTeams = new ShowTeams();
-    List<String> teamList = new ArrayList<String>();
+    List<String> team1List = new ArrayList<String>();
+    List<String> team2List = new ArrayList<String>();
+    List<String> team3List = new ArrayList<String>();
+    List<String> team4List = new ArrayList<String>();
+
+    ArrayList<String> schoolList = new ArrayList<String>();
+    ArrayAdapter<String> spinnerAdapter;
     Spinner mySchoolSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_teams);
+        if(schoolList.isEmpty()) {
+            schoolList.add("Brookland");
+            schoolList.add("Goochland");
+            schoolList.add("Manchester");
+            schoolList.add("Franklin");
+        }
+        mySchoolSpinner = (Spinner) findViewById(R.id.SchoolSpinner);
+        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, schoolList);
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        mySchoolSpinner.setAdapter(spinnerAdapter);
+
     }
 
 
@@ -52,6 +69,8 @@ public class EnterTeams extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.activity_show_teams) {
             Intent showIntent = new Intent(this, ShowTeams.class);
+            showIntent.putStringArrayListExtra("schoolList", schoolList);
+
             startActivity(showIntent);
             return true;
         }
@@ -68,12 +87,30 @@ public class EnterTeams extends Activity {
     public void enterTeamClick(View v) {
         EditText myEditText = (EditText) findViewById(R.id.teamName);
         String teamNameString = myEditText.getText().toString();
-        if (!teamList.contains(teamNameString)) {
-            teamList.add(teamNameString);
-            sTeams.populateTeamMaps(teamNameString);
+        String schoolName = mySchoolSpinner.getSelectedItem().toString();
+
+        if (!team1List.contains(teamNameString) && schoolName.equals("Franklin")) {
+            team1List.add(teamNameString);
+            sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        } else {
-            new AlertDialog.Builder(this)
+        }
+        else if (!team2List.contains(teamNameString) && schoolName.equals("Brookland")) {
+            team2List.add(teamNameString);
+            sTeams.populateTeamMaps(teamNameString, schoolName);
+            myEditText.selectAll();
+        }
+        else if (!team3List.contains(teamNameString) && schoolName.equals("Manchester")) {
+            team3List.add(teamNameString);
+            sTeams.populateTeamMaps(teamNameString, schoolName);
+            myEditText.selectAll();
+        }
+        else if (!team4List.contains(teamNameString) && schoolName.equals("Goochland")) {
+            team4List.add(teamNameString);
+            sTeams.populateTeamMaps(teamNameString, schoolName);
+            myEditText.selectAll();
+        }
+        else if ((team1List.contains(teamNameString) && schoolName.equals("Franklin")) ||  (team2List.contains(teamNameString) && schoolName.equals("Brookland")) || (team3List.contains(teamNameString) && schoolName.equals("Manchester")) || (team4List.contains(teamNameString) && schoolName.equals("Goochland"))){
+         new AlertDialog.Builder(this)
                     .setTitle("Duplicate Entry")
                     .setMessage("This team was already added!")
                     .setCancelable(true)
@@ -81,6 +118,10 @@ public class EnterTeams extends Activity {
                     .show();
         }
     }
+
+
+
+
 
     public void clearTeamsClick(View v) {
         EditText passText = (EditText) findViewById(R.id.clearPass);
