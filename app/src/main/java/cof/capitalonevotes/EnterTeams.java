@@ -37,7 +37,7 @@ public class EnterTeams extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_teams);
-        if(schoolList.isEmpty()) {
+        if (schoolList.isEmpty()) {
             schoolList.add("Brookland");
             schoolList.add("Goochland");
             schoolList.add("Manchester");
@@ -93,24 +93,20 @@ public class EnterTeams extends Activity {
             team1List.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        }
-        else if (!team2List.contains(teamNameString) && schoolName.equals("Brookland")) {
+        } else if (!team2List.contains(teamNameString) && schoolName.equals("Brookland")) {
             team2List.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        }
-        else if (!team3List.contains(teamNameString) && schoolName.equals("Manchester")) {
+        } else if (!team3List.contains(teamNameString) && schoolName.equals("Manchester")) {
             team3List.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        }
-        else if (!team4List.contains(teamNameString) && schoolName.equals("Goochland")) {
+        } else if (!team4List.contains(teamNameString) && schoolName.equals("Goochland")) {
             team4List.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        }
-        else if ((team1List.contains(teamNameString) && schoolName.equals("Franklin")) ||  (team2List.contains(teamNameString) && schoolName.equals("Brookland")) || (team3List.contains(teamNameString) && schoolName.equals("Manchester")) || (team4List.contains(teamNameString) && schoolName.equals("Goochland"))){
-         new AlertDialog.Builder(this)
+        } else if ((team1List.contains(teamNameString) && schoolName.equals("Franklin")) || (team2List.contains(teamNameString) && schoolName.equals("Brookland")) || (team3List.contains(teamNameString) && schoolName.equals("Manchester")) || (team4List.contains(teamNameString) && schoolName.equals("Goochland"))) {
+            new AlertDialog.Builder(this)
                     .setTitle("Duplicate Entry")
                     .setMessage("This team was already added!")
                     .setCancelable(true)
@@ -118,9 +114,6 @@ public class EnterTeams extends Activity {
                     .show();
         }
     }
-
-
-
 
 
     public void clearTeamsClick(View v) {

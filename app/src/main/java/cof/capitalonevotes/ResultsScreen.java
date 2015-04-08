@@ -82,9 +82,9 @@ public class ResultsScreen extends Activity {
                 TextView cat1textview = (TextView) findViewById(R.id.cat1View);
                 TextView cat2textview = (TextView) findViewById(R.id.cat2View);
                 TextView cat3textview = (TextView) findViewById(R.id.cat3View);
-                switch (schoolPicked){
+                //todo picking through schools clears list on screen
+                switch (schoolPicked) {
                     case "Franklin":
-
                         sortedcat1 = sortMaps(franklinCategory1);
                         sortedcat2 = sortMaps(franklinCategory2);
                         sortedcat3 = sortMaps(franklinCategory3);
@@ -116,8 +116,6 @@ public class ResultsScreen extends Activity {
                         displayResults(sortedcat2, cat2textview);
                         displayResults(sortedcat3, cat3textview);
                         break;
-
-
                 }
             }
 
@@ -157,15 +155,8 @@ public class ResultsScreen extends Activity {
             startActivity(enterIntent);
             return true;
         }
-        if (id == R.id.activity_results_screen) {
-            Intent enterIntent = new Intent(this, ResultsScreen.class);
-            startActivity(enterIntent);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
     public LinkedHashMap sortMaps(HashMap<String, Integer> passedMap) {
@@ -206,7 +197,7 @@ public class ResultsScreen extends Activity {
         while (i.hasNext()) {
             Map.Entry me = (Map.Entry) i.next();
             String checkZeroString = me.getValue().toString();
-            if(!checkZeroString.equals("0")) {
+            if (!checkZeroString.equals("0")) {
                 tview.append(me.getKey().toString() + ": ");
                 tview.append(checkZeroString);
                 tview.append("\n");
