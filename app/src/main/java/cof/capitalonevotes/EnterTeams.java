@@ -25,12 +25,18 @@ import java.util.List;
 public class EnterTeams extends Activity {
 
     List<String> prePopBrook = Arrays.asList("sup1", "sup2", "sup3");
+    List<String> prePopGoochland = Arrays.asList("sup1", "sup2", "sup3");
+    List<String> prePopFranklin = Arrays.asList("sup1", "sup2", "sup3");
+    List<String> prePopManchester = Arrays.asList("sup1", "sup2", "sup3");
     ShowTeams sTeams = new ShowTeams();
-    List<String> team1List = new ArrayList<String>();
-    List<String> team2List = new ArrayList<String>();
-    List<String> team3List = new ArrayList<String>();
-    List<String> team4List = new ArrayList<String>();
-
+    List<String> franklinList = new ArrayList<String>();
+    List<String> brooklandList = new ArrayList<String>();
+    List<String> manchesterList = new ArrayList<String>();
+    List<String> goochlandList = new ArrayList<String>();
+    String brookland ="Brookland";
+    String goochland = "Goochland";
+    String manchester = "Manchester";
+    String franklin = "Franklin";
     ArrayList<String> schoolList = new ArrayList<String>();
     ArrayAdapter<String> spinnerAdapter;
     Spinner mySchoolSpinner;
@@ -40,10 +46,10 @@ public class EnterTeams extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_teams);
         if (schoolList.isEmpty()) {
-            schoolList.add("Brookland");
-            schoolList.add("Goochland");
-            schoolList.add("Manchester");
-            schoolList.add("Franklin");
+            schoolList.add(brookland);
+            schoolList.add(goochland);
+            schoolList.add(manchester);
+            schoolList.add(franklin);
         }
         mySchoolSpinner = (Spinner) findViewById(R.id.SchoolSpinner);
         spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, schoolList);
@@ -91,23 +97,23 @@ public class EnterTeams extends Activity {
         String teamNameString = myEditText.getText().toString();
         String schoolName = mySchoolSpinner.getSelectedItem().toString();
 
-        if (!team1List.contains(teamNameString) && schoolName.equals("Franklin")) {
-            team1List.add(teamNameString);
+        if (!franklinList.contains(teamNameString) && schoolName.equals(franklin)) {
+            franklinList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        } else if (!team2List.contains(teamNameString) && schoolName.equals("Brookland")) {
-            team2List.add(teamNameString);
+        } else if (!brooklandList.contains(teamNameString) && schoolName.equals(brookland)) {
+            brooklandList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        } else if (!team3List.contains(teamNameString) && schoolName.equals("Manchester")) {
-            team3List.add(teamNameString);
+        } else if (!manchesterList.contains(teamNameString) && schoolName.equals(manchester)) {
+            manchesterList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        } else if (!team4List.contains(teamNameString) && schoolName.equals("Goochland")) {
-            team4List.add(teamNameString);
+        } else if (!goochlandList.contains(teamNameString) && schoolName.equals(goochland)) {
+            goochlandList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
             myEditText.selectAll();
-        } else if ((team1List.contains(teamNameString) && schoolName.equals("Franklin")) || (team2List.contains(teamNameString) && schoolName.equals("Brookland")) || (team3List.contains(teamNameString) && schoolName.equals("Manchester")) || (team4List.contains(teamNameString) && schoolName.equals("Goochland"))) {
+        } else if ((franklinList.contains(teamNameString) && schoolName.equals(franklin)) || (brooklandList.contains(teamNameString) && schoolName.equals(brookland)) || (manchesterList.contains(teamNameString) && schoolName.equals(manchester)) || (goochlandList.contains(teamNameString) && schoolName.equals(goochland))) {
             new AlertDialog.Builder(this)
                     .setTitle("Duplicate Entry")
                     .setMessage("This team was already added!")
@@ -120,17 +126,23 @@ public class EnterTeams extends Activity {
     public void prePopulateTeamsClick(View v)
     {
 
-        for (int i = 0; i < prePopBrook.size(); i++) {
-            String brookTeamName = prePopBrook.get(i);
-            if (!team2List.contains(brookTeamName)) {
-                team2List.add(brookTeamName);
-                sTeams.populateTeamMaps(brookTeamName, "Brookland");
+      prePopMethod(prePopBrook, brooklandList, brookland);
+
+    }
+
+
+    public void prePopMethod(List<String> prepoplist, List<String> teamList, String schoolName){
+
+        for (int i = 0; i < prepoplist.size(); i++) {
+            String brookTeamName = prepoplist.get(i);
+            if (!teamList.contains(brookTeamName)) {
+                teamList.add(brookTeamName);
+                sTeams.populateTeamMaps(brookTeamName, schoolName);
             }
         }
 
 
     }
-
     public void clearTeamsClick(View v) {
         EditText passText = (EditText) findViewById(R.id.clearPass);
         String pass = passText.getText().toString();

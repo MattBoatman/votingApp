@@ -46,6 +46,10 @@ public class ShowTeams extends Activity {
     static HashMap<String, Integer> franklinCategory1 = new HashMap<String, Integer>();
     static HashMap<String, Integer> franklinCategory2 = new HashMap<String, Integer>();
     static HashMap<String, Integer> franklinCategory3 = new HashMap<String, Integer>();
+    static String brookland ="Brookland";
+    static String goochland = "Goochland";
+    static String manchester = "Manchester";
+    static String franklin = "Franklin";
     ArrayAdapter<String> spinnerAdapter;
     ArrayAdapter<String> SchoolspinnerAdapter;
     Button submitbtn;
@@ -173,25 +177,25 @@ public class ShowTeams extends Activity {
     }
 
     public static void populateTeamMaps(String teamName, String schoolName) {
-        if (schoolName.equals("Brookland")) {
+        if (schoolName.equals(brookland)) {
             brooklandCategory1.put(teamName, 0);
             brooklandCategory2.put(teamName, 0);
             brooklandCategory3.put(teamName, 0);
             brooklandList.add(teamName);
         }
-        if (schoolName.equals("Goochland")) {
+        if (schoolName.equals(goochland)) {
             goochlandCategory1.put(teamName, 0);
             goochlandCategory2.put(teamName, 0);
             goochlandCategory3.put(teamName, 0);
             goochlandList.add(teamName);
         }
-        if (schoolName.equals("Manchester")) {
+        if (schoolName.equals(manchester)) {
             manchesterCategory1.put(teamName, 0);
             manchesterCategory2.put(teamName, 0);
             manchesterCategory3.put(teamName, 0);
             manchesterList.add(teamName);
         }
-        if (schoolName.equals("Franklin")) {
+        if (schoolName.equals(franklin)) {
             franklinCategory1.put(teamName, 0);
             franklinCategory2.put(teamName, 0);
             franklinCategory3.put(teamName, 0);
