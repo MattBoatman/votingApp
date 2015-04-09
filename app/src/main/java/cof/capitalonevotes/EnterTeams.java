@@ -17,12 +17,14 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class EnterTeams extends Activity {
 
+    List<String> prePopBrook = Arrays.asList("sup1", "sup2", "sup3");
     ShowTeams sTeams = new ShowTeams();
     List<String> team1List = new ArrayList<String>();
     List<String> team2List = new ArrayList<String>();
@@ -115,6 +117,19 @@ public class EnterTeams extends Activity {
         }
     }
 
+    public void prePopulateTeamsClick(View v)
+    {
+
+        for (int i = 0; i < prePopBrook.size(); i++) {
+            String brookTeamName = prePopBrook.get(i);
+            if (!team2List.contains(brookTeamName)) {
+                team2List.add(brookTeamName);
+                sTeams.populateTeamMaps(brookTeamName, "Brookland");
+            }
+        }
+
+
+    }
 
     public void clearTeamsClick(View v) {
         EditText passText = (EditText) findViewById(R.id.clearPass);

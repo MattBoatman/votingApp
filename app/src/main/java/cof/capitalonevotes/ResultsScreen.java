@@ -85,36 +85,40 @@ public class ResultsScreen extends Activity {
                 //todo picking through schools clears list on screen
                 switch (schoolPicked) {
                     case "Franklin":
-                        sortedcat1 = sortMaps(franklinCategory1);
-                        sortedcat2 = sortMaps(franklinCategory2);
-                        sortedcat3 = sortMaps(franklinCategory3);
-                        displayResults(sortedcat1, cat1textview);
-                        displayResults(sortedcat2, cat2textview);
-                        displayResults(sortedcat3, cat3textview);
+                        sortandDisplay(franklinCategory1, franklinCategory2, franklinCategory3);
+//                        sortedcat1 = sortMaps(franklinCategory1);
+//                        sortedcat2 = sortMaps(franklinCategory2);
+//                        sortedcat3 = sortMaps(franklinCategory3);
+//                        displayResults(sortedcat1, cat1textview);
+//                        displayResults(sortedcat2, cat2textview);
+//                        displayResults(sortedcat3, cat3textview);
                         break;
                     case "Brookland":
-                        sortedcat1 = sortMaps(brooklandCategory1);
-                        sortedcat2 = sortMaps(brooklandCategory2);
-                        sortedcat3 = sortMaps(brooklandCategory3);
-                        displayResults(sortedcat1, cat1textview);
-                        displayResults(sortedcat2, cat2textview);
-                        displayResults(sortedcat3, cat3textview);
+                        sortandDisplay(brooklandCategory1, brooklandCategory2, brooklandCategory3);
+//                        sortedcat1 = sortMaps(brooklandCategory1);
+//                        sortedcat2 = sortMaps(brooklandCategory2);
+//                        sortedcat3 = sortMaps(brooklandCategory3);
+//                        displayResults(sortedcat1, cat1textview);
+//                        displayResults(sortedcat2, cat2textview);
+//                        displayResults(sortedcat3, cat3textview);
                         break;
                     case "Goochland":
-                        sortedcat1 = sortMaps(goochlandCategory1);
-                        sortedcat2 = sortMaps(goochlandCategory2);
-                        sortedcat3 = sortMaps(goochlandCategory3);
-                        displayResults(sortedcat1, cat1textview);
-                        displayResults(sortedcat2, cat2textview);
-                        displayResults(sortedcat3, cat3textview);
+                        sortandDisplay(goochlandCategory1, goochlandCategory2, goochlandCategory3);
+//                        sortedcat1 = sortMaps(goochlandCategory1);
+//                        sortedcat2 = sortMaps(goochlandCategory2);
+//                        sortedcat3 = sortMaps(goochlandCategory3);
+//                        displayResults(sortedcat1, cat1textview);
+//                        displayResults(sortedcat2, cat2textview);
+//                        displayResults(sortedcat3, cat3textview);
                         break;
                     case "Manchester":
-                        sortedcat1 = sortMaps(manchesterCategory1);
-                        sortedcat2 = sortMaps(manchesterCategory2);
-                        sortedcat3 = sortMaps(manchesterCategory3);
-                        displayResults(sortedcat1, cat1textview);
-                        displayResults(sortedcat2, cat2textview);
-                        displayResults(sortedcat3, cat3textview);
+                        sortandDisplay(manchesterCategory1, manchesterCategory2, manchesterCategory3);
+//                        sortedcat1 = sortMaps(manchesterCategory1);
+//                        sortedcat2 = sortMaps(manchesterCategory2);
+//                        sortedcat3 = sortMaps(manchesterCategory3);
+//                        displayResults(sortedcat1, cat1textview);
+//                        displayResults(sortedcat2, cat2textview);
+//                        displayResults(sortedcat3, cat3textview);
                         break;
                 }
             }
@@ -158,6 +162,21 @@ public class ResultsScreen extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+ public void sortandDisplay(HashMap<String, Integer> cat1, HashMap<String, Integer> cat2, HashMap<String, Integer> cat3){
+       TextView cat1textview = (TextView) findViewById(R.id.cat1View);
+     TextView cat2textview = (TextView) findViewById(R.id.cat2View);
+     TextView cat3textview = (TextView) findViewById(R.id.cat3View);
+     sortedcat1 = sortMaps(cat1);
+     sortedcat2 = sortMaps(cat2);
+     sortedcat3 = sortMaps(cat3);
+     displayResults(sortedcat1, cat1textview);
+     displayResults(sortedcat2, cat2textview);
+     displayResults(sortedcat3, cat3textview);
+
+
+ }
 
     public LinkedHashMap sortMaps(HashMap<String, Integer> passedMap) {
 

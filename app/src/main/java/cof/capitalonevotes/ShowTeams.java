@@ -14,6 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,9 +27,6 @@ import java.util.Map;
 
 
 public class ShowTeams extends Activity {
-
-
-    String[] fakeSchools = new String[]{"team1", "team2", "team3", "team4"};
 
 
     static List<String> brooklandList = new ArrayList<String>();
@@ -66,14 +69,14 @@ public class ShowTeams extends Activity {
         SchoolspinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schoolSpinner.setAdapter(SchoolspinnerAdapter);
         SchoolspinnerAdapter.notifyDataSetChanged();
-        spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, brooklandList);
-        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
-        cat1Spinner.setAdapter(spinnerAdapter);
+       // spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, brooklandList);
+        //spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
+        //cat1Spinner.setAdapter(spinnerAdapter);
         //  spinnerAdapter.notifyDataSetChanged();
-        cat2Spinner.setAdapter(spinnerAdapter);
+       // cat2Spinner.setAdapter(spinnerAdapter);
         //  spinnerAdapter.notifyDataSetChanged();
-        cat3Spinner.setAdapter(spinnerAdapter);
-        spinnerAdapter.notifyDataSetChanged();
+       // cat3Spinner.setAdapter(spinnerAdapter);
+      //  spinnerAdapter.notifyDataSetChanged();
         //populateSpinners();
         submitbtn = (Button) findViewById(R.id.button);
         schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -81,34 +84,39 @@ public class ShowTeams extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //stuff here to handle item selection
                 String schoolPicked = schoolSpinner.getSelectedItem().toString();
-                String schools;
                 switch (schoolPicked) {
                     case "Franklin":
                         populateSpinners(franklinList);
                         if (franklinList.isEmpty()) {
                             submitbtn.setEnabled(false);
                         }
+                        else
+                            submitbtn.setEnabled(true);
+
                         break;
                     case "Brookland":
                         populateSpinners(brooklandList);
                         if (brooklandList.isEmpty()) {
                             submitbtn.setEnabled(false);
-
                         }
+                        else
+                            submitbtn.setEnabled(true);
                         break;
                     case "Goochland":
                         populateSpinners(goochlandList);
                         if (goochlandList.isEmpty()) {
                             submitbtn.setEnabled(false);
-
                         }
+                        else
+                            submitbtn.setEnabled(true);
                         break;
                     case "Manchester":
                         populateSpinners(manchesterList);
                         if (manchesterList.isEmpty()) {
                             submitbtn.setEnabled(false);
-
                         }
+                        else
+                            submitbtn.setEnabled(true);
                         break;
 
 
@@ -201,13 +209,13 @@ public class ShowTeams extends Activity {
         cat1Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
         //spinner 2
-        ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
-        spinnerAdapter2.setDropDownViewResource(R.layout.spinner_item);
+        //ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
+        //spinnerAdapter2.setDropDownViewResource(R.layout.spinner_item);
         cat2Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
         //spinner 3
-        ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
-        spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
+        //ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
+        //spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
         cat3Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
     }
@@ -286,5 +294,32 @@ public class ShowTeams extends Activity {
         manchesterList.clear();
     }
 
-
+//    protected void onPause() {
+//        super.onPause();
+//        try {
+//            FileOutputStream fileOutputStream = new FileOutputStream("brooklandCategory1.txt");
+//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+//            objectOutputStream.writeObject(brooklandCategory1);
+//            objectOutputStream.close();
+//        }
+//        catch(IOException ie) {
+//            ie.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//        try {
+//            FileInputStream fileInputStream = new FileInputStream("brooklandCategory1.txt");
+//            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+//
+//            brooklandCategory1 = (HashMap) objectInputStream.readObject();
+//            objectInputStream.close();
+//        }
+//        catch(IOException ie) {
+//            ie.printStackTrace();
+//        }
+//
+//    }
 }

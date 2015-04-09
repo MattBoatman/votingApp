@@ -54,4 +54,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pre Populate Teams"
+        android:id="@+id/prePopulate"
+        android:layout_above="@+id/clearButton"
+        android:layout_alignLeft="@+id/clearButton"
+        android:layout_alignStart="@+id/clearButton"
+        android:layout_marginBottom="71dp"
+        android:onClick="prePopulateTeamsClick" />
+
 </RelativeLayout>
