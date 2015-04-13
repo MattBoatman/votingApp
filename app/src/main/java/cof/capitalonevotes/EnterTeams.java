@@ -16,6 +16,12 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,10 +30,10 @@ import java.util.List;
 
 public class EnterTeams extends Activity {
 
-    List<String> prePopBrook = Arrays.asList("sup1", "sup2", "sup3");
-    List<String> prePopGoochland = Arrays.asList("sup1", "sup2", "sup3");
-    List<String> prePopFranklin = Arrays.asList("sup1", "sup2", "sup3");
-    List<String> prePopManchester = Arrays.asList("sup1", "sup2", "sup3");
+    List<String> prePopBrook = Arrays.asList("Basketball Shooter", "Candy Candy Fruit", "Dart Board", "Group Hangout", "Icy Run", "Mouse", "Space Shooter", "student volunteer", "Sujinga");
+    List<String> prePopGoochland = Arrays.asList("7h3 P0W3RUP5", "Bird Gang", "Dan N' Da Business", "Fresh Cola", "Glasses Squad", "Goochland Goobers", "H@ck3r$", "M & Z Contrivances", "Marley", "NynterUnited", "Swag City", "The Café Crew");
+    List<String> prePopFranklin = Arrays.asList("Awesome Awesome", "Cookie Empire", "Crystal Chasers", "Emoji Wallpaper", "ESC", "Mouse", "PBJ Memory", "Pocket Racing", "Scary Treat", "Soul Wolf Football", "Sponge Mouse");
+    List<String> prePopManchester = Arrays.asList("Atomic Slime Desperados", "Dragon Tech Support", "Fast Food Friends", "Fuego", "H", "I", "Little Einsteins", "Santiago Agudelo", "Swagalicious");
     ShowTeams sTeams = new ShowTeams();
     List<String> franklinList = new ArrayList<String>();
     List<String> brooklandList = new ArrayList<String>();
@@ -125,9 +131,16 @@ public class EnterTeams extends Activity {
 
     public void prePopulateTeamsClick(View v)
     {
-
-      prePopMethod(prePopBrook, brooklandList, brookland);
-
+         prePopMethod(prePopFranklin, franklinList, franklin);
+        prePopMethod(prePopBrook, brooklandList, brookland);
+        prePopMethod(prePopGoochland, goochlandList, goochland);
+        prePopMethod(prePopManchester, manchesterList, manchester);
+        new AlertDialog.Builder(this)
+                .setTitle("Prepopulated Teams")
+                .setMessage("The teams have been prepopulated")
+                .setCancelable(true)
+                .setPositiveButton("OK", null)
+                .show();
     }
 
 

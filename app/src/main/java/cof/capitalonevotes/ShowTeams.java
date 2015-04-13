@@ -65,6 +65,7 @@ public class ShowTeams extends Activity {
         setContentView(R.layout.activity_show_teams);
         Intent intent = getIntent();
         schoolList = intent.getStringArrayListExtra("schoolList");
+        getActionBar().setTitle("Brookland Teams");
         cat1Spinner = (Spinner) findViewById(R.id.category1);
         cat2Spinner = (Spinner) findViewById(R.id.category2);
         cat3Spinner = (Spinner) findViewById(R.id.category3);
@@ -91,6 +92,8 @@ public class ShowTeams extends Activity {
                 switch (schoolPicked) {
                     case "Franklin":
                         populateSpinners(franklinList);
+                        getActionBar().setTitle("Franklin Teams");
+                        //getSupportActionBar().setTitle("Hello world App");
                         if (franklinList.isEmpty()) {
                             submitbtn.setEnabled(false);
                         }
@@ -100,6 +103,7 @@ public class ShowTeams extends Activity {
                         break;
                     case "Brookland":
                         populateSpinners(brooklandList);
+                        getActionBar().setTitle("Brookland Teams");
                         if (brooklandList.isEmpty()) {
                             submitbtn.setEnabled(false);
                         }
@@ -108,6 +112,7 @@ public class ShowTeams extends Activity {
                         break;
                     case "Goochland":
                         populateSpinners(goochlandList);
+                        getActionBar().setTitle("Goochland Teams");
                         if (goochlandList.isEmpty()) {
                             submitbtn.setEnabled(false);
                         }
@@ -116,6 +121,7 @@ public class ShowTeams extends Activity {
                         break;
                     case "Manchester":
                         populateSpinners(manchesterList);
+                        getActionBar().setTitle("Manchester Teams");
                         if (manchesterList.isEmpty()) {
                             submitbtn.setEnabled(false);
                         }
