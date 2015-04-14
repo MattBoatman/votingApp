@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -102,7 +103,7 @@ public class EnterTeams extends Activity {
         EditText myEditText = (EditText) findViewById(R.id.teamName);
         String teamNameString = myEditText.getText().toString();
         String schoolName = mySchoolSpinner.getSelectedItem().toString();
-
+//teams adding twice if prepop added them
         if (!franklinList.contains(teamNameString) && schoolName.equals(franklin)) {
             franklinList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
@@ -135,6 +136,8 @@ public class EnterTeams extends Activity {
         prePopMethod(prePopBrook, brooklandList, brookland);
         prePopMethod(prePopGoochland, goochlandList, goochland);
         prePopMethod(prePopManchester, manchesterList, manchester);
+        Button prepopbtn = (Button) findViewById(R.id.prePopulate);
+        prepopbtn.setEnabled(false);
         new AlertDialog.Builder(this)
                 .setTitle("Prepopulated Teams")
                 .setMessage("The teams have been prepopulated")
@@ -145,12 +148,12 @@ public class EnterTeams extends Activity {
 
 
     public void prePopMethod(List<String> prepoplist, List<String> teamList, String schoolName){
-
+    //teams are adding twice so disabled button
         for (int i = 0; i < prepoplist.size(); i++) {
-            String brookTeamName = prepoplist.get(i);
-            if (!teamList.contains(brookTeamName)) {
-                teamList.add(brookTeamName);
-                sTeams.populateTeamMaps(brookTeamName, schoolName);
+            String teamName = prepoplist.get(i);
+            if (!teamList.contains(teamName)) {
+                teamList.add(teamName);
+                sTeams.populateTeamMaps(teamName, schoolName);
             }
         }
 

@@ -24,8 +24,6 @@ import java.util.Set;
 
 public class ResultsScreen extends Activity {
 
-    static HashMap<String, Integer> cat1 = new HashMap<String, Integer>();
-
 
     LinkedHashMap<String, Integer> sortedcat1;
     LinkedHashMap<String, Integer> sortedcat2;
@@ -77,48 +75,20 @@ public class ResultsScreen extends Activity {
         schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //stuff here to handle item selection
                 String schoolPicked = schoolSpinner.getSelectedItem().toString();
-                TextView cat1textview = (TextView) findViewById(R.id.cat1View);
-                TextView cat2textview = (TextView) findViewById(R.id.cat2View);
-                TextView cat3textview = (TextView) findViewById(R.id.cat3View);
                 //todo picking through schools clears list on screen
                 switch (schoolPicked) {
                     case "Franklin":
                         sortandDisplay(franklinCategory1, franklinCategory2, franklinCategory3);
-//                        sortedcat1 = sortMaps(franklinCategory1);
-//                        sortedcat2 = sortMaps(franklinCategory2);
-//                        sortedcat3 = sortMaps(franklinCategory3);
-//                        displayResults(sortedcat1, cat1textview);
-//                        displayResults(sortedcat2, cat2textview);
-//                        displayResults(sortedcat3, cat3textview);
                         break;
                     case "Brookland":
                         sortandDisplay(brooklandCategory1, brooklandCategory2, brooklandCategory3);
-//                        sortedcat1 = sortMaps(brooklandCategory1);
-//                        sortedcat2 = sortMaps(brooklandCategory2);
-//                        sortedcat3 = sortMaps(brooklandCategory3);
-//                        displayResults(sortedcat1, cat1textview);
-//                        displayResults(sortedcat2, cat2textview);
-//                        displayResults(sortedcat3, cat3textview);
                         break;
                     case "Goochland":
                         sortandDisplay(goochlandCategory1, goochlandCategory2, goochlandCategory3);
-//                        sortedcat1 = sortMaps(goochlandCategory1);
-//                        sortedcat2 = sortMaps(goochlandCategory2);
-//                        sortedcat3 = sortMaps(goochlandCategory3);
-//                        displayResults(sortedcat1, cat1textview);
-//                        displayResults(sortedcat2, cat2textview);
-//                        displayResults(sortedcat3, cat3textview);
                         break;
                     case "Manchester":
                         sortandDisplay(manchesterCategory1, manchesterCategory2, manchesterCategory3);
-//                        sortedcat1 = sortMaps(manchesterCategory1);
-//                        sortedcat2 = sortMaps(manchesterCategory2);
-//                        sortedcat3 = sortMaps(manchesterCategory3);
-//                        displayResults(sortedcat1, cat1textview);
-//                        displayResults(sortedcat2, cat2textview);
-//                        displayResults(sortedcat3, cat3textview);
                         break;
                 }
             }

@@ -74,15 +74,6 @@ public class ShowTeams extends Activity {
         SchoolspinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schoolSpinner.setAdapter(SchoolspinnerAdapter);
         SchoolspinnerAdapter.notifyDataSetChanged();
-       // spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, brooklandList);
-        //spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
-        //cat1Spinner.setAdapter(spinnerAdapter);
-        //  spinnerAdapter.notifyDataSetChanged();
-       // cat2Spinner.setAdapter(spinnerAdapter);
-        //  spinnerAdapter.notifyDataSetChanged();
-       // cat3Spinner.setAdapter(spinnerAdapter);
-      //  spinnerAdapter.notifyDataSetChanged();
-        //populateSpinners();
         submitbtn = (Button) findViewById(R.id.button);
         schoolSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,7 +90,6 @@ public class ShowTeams extends Activity {
                         }
                         else
                             submitbtn.setEnabled(true);
-
                         break;
                     case "Brookland":
                         populateSpinners(brooklandList);
@@ -128,8 +118,6 @@ public class ShowTeams extends Activity {
                         else
                             submitbtn.setEnabled(true);
                         break;
-
-
                 }
             }
 
@@ -212,35 +200,25 @@ public class ShowTeams extends Activity {
     }
 
     public void populateSpinners(List<String> teamList) {
-        //spinner 1
-        //Spinner cat1Spinner = (Spinner) findViewById(R.id.category1);
+
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         cat1Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
-        //spinner 2
-        //ArrayAdapter<String> spinnerAdapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
-        //spinnerAdapter2.setDropDownViewResource(R.layout.spinner_item);
+
         cat2Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
-        //spinner 3
-        //ArrayAdapter<String> spinnerAdapter3 = new ArrayAdapter<String>(this, R.layout.spinner_item, teamList);
-        //spinnerAdapter3.setDropDownViewResource(R.layout.spinner_item);
+
         cat3Spinner.setAdapter(spinnerAdapter);
         spinnerAdapter.notifyDataSetChanged();
     }
 
 
     public void submitVotesClick(View v) {
-        //todo crash when no teams are entered
 
-        String cat1pick = "";
-        String cat2pick = "";
-        String cat3pick = "";
-
-        cat1pick = cat1Spinner.getSelectedItem().toString();
-        cat2pick = cat2Spinner.getSelectedItem().toString();
-        cat3pick = cat3Spinner.getSelectedItem().toString();
+       String cat1pick = cat1Spinner.getSelectedItem().toString();
+       String cat2pick = cat2Spinner.getSelectedItem().toString();
+        String cat3pick = cat3Spinner.getSelectedItem().toString();
 
         String schoolName = schoolSpinner.getSelectedItem().toString();
 
