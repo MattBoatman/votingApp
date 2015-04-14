@@ -285,7 +285,11 @@ public class ShowTeams extends Activity {
 //    protected void onPause() {
 //        super.onPause();
 //        try {
-//            FileOutputStream fileOutputStream = new FileOutputStream("brooklandCategory1.txt");
+//            File brookfile1 = new File("brooklandCategory1.txt");
+//            if(!brookfile1.exists()) {
+//                brookfile1.createNewFile();
+//            }
+//            FileOutputStream fileOutputStream = new FileOutputStream(brookfile1);
 //            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 //            objectOutputStream.writeObject(brooklandCategory1);
 //            objectOutputStream.close();
@@ -305,7 +309,7 @@ public class ShowTeams extends Activity {
 //            brooklandCategory1 = (HashMap) objectInputStream.readObject();
 //            objectInputStream.close();
 //        }
-//        catch(IOException ie) {
+//        catch(Exception ie) {
 //            ie.printStackTrace();
 //        }
 //

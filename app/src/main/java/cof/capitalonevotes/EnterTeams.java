@@ -47,7 +47,7 @@ public class EnterTeams extends Activity {
     ArrayList<String> schoolList = new ArrayList<String>();
     ArrayAdapter<String> spinnerAdapter;
     Spinner mySchoolSpinner;
-
+    Button prepopbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +58,7 @@ public class EnterTeams extends Activity {
             schoolList.add(manchester);
             schoolList.add(franklin);
         }
+        prepopbtn = (Button) findViewById(R.id.prePopulate);
         mySchoolSpinner = (Spinner) findViewById(R.id.SchoolSpinner);
         spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, schoolList);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
@@ -103,7 +104,7 @@ public class EnterTeams extends Activity {
         EditText myEditText = (EditText) findViewById(R.id.teamName);
         String teamNameString = myEditText.getText().toString();
         String schoolName = mySchoolSpinner.getSelectedItem().toString();
-//teams adding twice if prepop added them
+        //teams adding twice if prepop added them
         if (!franklinList.contains(teamNameString) && schoolName.equals(franklin)) {
             franklinList.add(teamNameString);
             sTeams.populateTeamMaps(teamNameString, schoolName);
@@ -132,11 +133,10 @@ public class EnterTeams extends Activity {
 
     public void prePopulateTeamsClick(View v)
     {
-         prePopMethod(prePopFranklin, franklinList, franklin);
+        prePopMethod(prePopFranklin, franklinList, franklin);
         prePopMethod(prePopBrook, brooklandList, brookland);
         prePopMethod(prePopGoochland, goochlandList, goochland);
         prePopMethod(prePopManchester, manchesterList, manchester);
-        Button prepopbtn = (Button) findViewById(R.id.prePopulate);
         prepopbtn.setEnabled(false);
         new AlertDialog.Builder(this)
                 .setTitle("Prepopulated Teams")
@@ -165,6 +165,7 @@ public class EnterTeams extends Activity {
         System.out.println(pass);
         if (pass.equals("coders")) {
             sTeams.clearTeams();
+            prepopbtn.setEnabled(true);
             new AlertDialog.Builder(this)
                     .setTitle("Clear Teams")
                     .setMessage("The teams are cleared!")
