@@ -58,7 +58,9 @@ public class EnterTeams extends Activity {
             schoolList.add(manchester);
             schoolList.add(franklin);
         }
+
         prepopbtn = (Button) findViewById(R.id.prePopulate);
+
         mySchoolSpinner = (Spinner) findViewById(R.id.SchoolSpinner);
         spinnerAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, schoolList);
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
@@ -90,11 +92,7 @@ public class EnterTeams extends Activity {
             startActivity(showIntent);
             return true;
         }
-        if (id == R.id.activity_enter_teams) {
-            Intent enterIntent = new Intent(this, EnterTeams.class);
-            startActivity(enterIntent);
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -138,6 +136,7 @@ public class EnterTeams extends Activity {
         prePopMethod(prePopGoochland, goochlandList, goochland);
         prePopMethod(prePopManchester, manchesterList, manchester);
         prepopbtn.setEnabled(false);
+
         new AlertDialog.Builder(this)
                 .setTitle("Prepopulated Teams")
                 .setMessage("The teams have been prepopulated")
