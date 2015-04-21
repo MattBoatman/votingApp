@@ -22,7 +22,7 @@
         android:textIsSelectable="true"
         android:clickable="true"
         android:text="Most Creative Results:"
-      />
+        android:textSize="20dp" />
     </ScrollView>
 
     <ScrollView android:layout_height="300dip"
@@ -38,7 +38,8 @@
         android:id="@+id/cat2View"
         android:text="Most User Friendly Results"
         android:maxLines = "20"
-        android:scrollbars = "vertical" />
+        android:scrollbars = "vertical"
+        android:textSize="20dp" />
     </ScrollView>
 
 
@@ -55,7 +56,8 @@
         android:layout_below="@+id/cat2View"
         android:text="Best Overall Results: "
         android:maxLines = "20"
-        android:scrollbars = "vertical"/>
+        android:scrollbars = "vertical"
+        android:textSize="20dp" />
     </ScrollView>
 
     <Spinner
@@ -73,7 +75,8 @@
         android:id="@+id/textView"
         android:layout_above="@+id/scrollview1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,7 +86,8 @@
         android:id="@+id/textView2"
         android:layout_above="@+id/scrollview2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,5 +97,6 @@
         android:id="@+id/textView3"
         android:layout_above="@+id/scrollview3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
 </RelativeLayout>

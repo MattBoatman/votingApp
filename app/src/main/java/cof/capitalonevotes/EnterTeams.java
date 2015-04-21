@@ -31,10 +31,10 @@ import java.util.List;
 
 public class EnterTeams extends Activity {
 
-    List<String> prePopBrook = Arrays.asList("Basketball Shooter", "Candy Candy Fruit", "Dart Board", "Group Hangout", "Icy Run", "Mouse", "Space Shooter", "student volunteer", "Sujinga");
-    List<String> prePopGoochland = Arrays.asList("7h3 P0W3RUP5", "Bird Gang", "Dan N' Da Business", "Fresh Cola", "Glasses Squad", "Goochland Goobers", "H@ck3r$", "M & Z Contrivances", "Marley", "NynterUnited", "Swag City", "The Café Crew");
-    List<String> prePopFranklin = Arrays.asList("Awesome Awesome", "Cookie Empire", "Crystal Chasers", "Emoji Wallpaper", "ESC", "Mouse", "PBJ Memory", "Pocket Racing", "Scary Treat", "Soul Wolf Football", "Sponge Mouse");
-    List<String> prePopManchester = Arrays.asList("Atomic Slime Desperados", "Dragon Tech Support", "Fast Food Friends", "Fuego", "H", "I", "Little Einsteins", "Santiago Agudelo", "Swagalicious");
+    List<String> prePopBrook = Arrays.asList("Select Team Here","Alehandro Gonzalez", "Basketball", "Basketball Shooter", "Candy Candy Fruit", "Dart Board", "Group Hangout", "Icy Run", "Mouse", "Sierra Green", "Space Shooter",  "Sujinga", "Temple Run");
+    List<String> prePopGoochland = Arrays.asList("Select Team Here", "7h3 P0W3RUP5", "Bird Gang", "Dan N' Da Business", "Fresh Cola", "Glasses Squad", "Goochland Goobers", "H@ck3r$", "M & Z Contrivances", "Marley", "NynterUnited", "Swag City", "The Café Crew");
+    List<String> prePopFranklin = Arrays.asList("Select Team Here", "Awesome Awesome", "Cookie Empire", "Crystal Chasers", "Emoji Wallpaper", "ESC", "PBJ Memory", "PBJ Memory", "Pocket Racing", "Scary Treat", "Soul Wolf Football", "Sponge Mouse");
+    List<String> prePopManchester = Arrays.asList("Select Team Here","Atomic Slime Desperados", "Dragon Tech Support", "Fast Food Friends", "Fuego", "H", "I", "Little Einsteins", "Santiago Agudelo", "Swagalicious");
     ShowTeams sTeams = new ShowTeams();
     List<String> franklinList = new ArrayList<String>();
     List<String> brooklandList = new ArrayList<String>();
